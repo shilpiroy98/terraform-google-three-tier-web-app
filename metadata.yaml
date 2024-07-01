@@ -54,7 +54,7 @@ spec:
       defaultValue: three-tier-app
     - name: enable_apis
       description: Whether or not to enable underlying apis in this solution. .
-      varType: string
+      varType: bool
       defaultValue: true
     - name: labels
       description: A map of labels to apply to contained resources.
