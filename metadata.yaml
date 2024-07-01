@@ -58,7 +58,7 @@ spec:
       defaultValue: true
     - name: labels
       description: A map of labels to apply to contained resources.
-      varType: map(string)
+      varType: map(bool)
       defaultValue:
         three-tier-app: true
     - name: project_id
