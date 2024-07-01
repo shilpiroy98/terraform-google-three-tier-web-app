@@ -44,7 +44,7 @@ variable "labels" {
 variable "enable_apis" {
   type        = string
   description = "Whether or not to enable underlying apis in this solution. ."
-  default     = true
+  default     = "poop"
 }
 
 variable "run_roles_list" {
