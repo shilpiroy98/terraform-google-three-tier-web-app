@@ -8,7 +8,7 @@ spec:
   info:
     title: Three-tier web app
     source:
-      repo: https://github.com/shilpiroy98/terraform-google-three-tier-web-app/edit/main/metadata.yaml
+      repo: https://github.com/GoogleCloudPlatform/terraform-google-three-tier-web-app.git
       sourceType: git
     version: 0.1.9
     actuationTool:
@@ -38,9 +38,40 @@ spec:
       description: The name of this particular deployment, will get added as a prefix to most resources.
       varType: string
       defaultValue: three-tier-app
+    - name: enable_apis
+      description: Whether or not to enable underlying apis in this solution. .
+      varType: string
+      defaultValue: true
+    - name: labels
+      description: A map of labels to apply to contained resources.
+      varType: map(string)
+      defaultValue:
+        three-tier-app: true
+    - name: project_id
+      description: The project ID to deploy to
+      varType: string
+      required: true
+    - name: region
+      description: The Compute Region to deploy to
+      varType: string
+      required: true
+    - name: run_roles_list
+      description: The list of roles that run needs
+      varType: list(string)
+      defaultValue:
+      - roles/cloudsql.instanceUser
+      - roles/cloudsql.client
+    - name: zone
+      description: The Compute Zone to deploy to
+      varType: string
+      required: true
     outputs:
     - name: endpoint
       description: The url of the front end which we want to surface to the user
+    - name: neos_toc_url
+      description: The URL to launch the in-console tutorial for the Three Tier App solution
+    - name: sqlservername
+      description: The name of the database that we randomly generated.
   requirements:
     roles:
     - level: Project
