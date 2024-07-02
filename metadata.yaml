@@ -38,6 +38,11 @@ spec:
       description: The name of this particular deployment, will get added as a prefix to most resources.
       varType: string
       defaultValue: three-tier-app
+    - name: labels
+      description: A map of labels to apply to contained resources.
+      varType: map(string)
+      defaultValue:
+        three-tier-app: true
     outputs:
     - name: endpoint
       description: The url of the front end which we want to surface to the user
