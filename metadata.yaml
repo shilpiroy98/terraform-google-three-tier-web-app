@@ -38,23 +38,11 @@ spec:
       description: The name of this particular deployment, will get added as a prefix to most resources.
       varType: string
       defaultValue: three-tier-app
-    - name: enable_apis
-      description: Whether or not to enable underlying apis in this solution. .
-      varType: string
-      defaultValue: true
     - name: labels
       description: A map of labels to apply to contained resources.
       varType: map(string)
       defaultValue:
         three-tier-app: true
-    - name: project_id
-      description: The project ID to deploy to
-      varType: string
-      required: true
-    - name: region
-      description: The Compute Region to deploy to
-      varType: string
-      required: true
     - name: run_roles_list
       description: The list of roles that run needs
       varType: list(string)
