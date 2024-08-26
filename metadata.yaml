@@ -102,26 +102,6 @@ spec:
         description: The roles required by default database instance service account for integration with GCP services
         varType: list(string)
         defaultValue: []
-      - name: database_version
-        description: The database version to use
-        varType: string
-        required: true
-      - name: db_charset
-        description: The charset for the default database
-        varType: string
-        defaultValue: ""
-      - name: db_collation
-        description: "The collation for the default database. Example: 'en_US.UTF8'"
-        varType: string
-        defaultValue: ""
-      - name: db_name
-        description: The name of the default database to create
-        varType: string
-        defaultValue: default
-      - name: delete_timeout
-        description: The optional timout that is applied to limit long database deletes.
-        varType: string
-        defaultValue: 30m
       - name: deletion_protection
         description: Used to block Terraform from deleting a SQL Instance.
         varType: bool
@@ -151,35 +131,6 @@ spec:
         description: The disk size for the Cloud SQL instance.
         varType: number
         defaultValue: 10
-      - name: disk_type
-        description: The disk type for the Cloud SQL instance.
-        varType: string
-        defaultValue: PD_SSD
-      - name: edition
-        description: The edition of the Cloud SQL instance, can be ENTERPRISE or ENTERPRISE_PLUS.
-        varType: string
-      - name: enable_default_db
-        description: Enable or disable the creation of the default database
-        varType: bool
-        defaultValue: true
-      - name: enable_default_user
-        description: Enable or disable the creation of the default user
-        varType: bool
-        defaultValue: true
-      - name: enable_google_ml_integration
-        description: Enable database ML integration
-        varType: bool
-        defaultValue: false
-      - name: enable_random_password_special
-        description: Enable special characters in generated random passwords.
-        varType: bool
-        defaultValue: false
-      - name: encryption_key_name
-        description: The full path to the encryption key used for the CMEK disk encryption
-        varType: string
-      - name: follow_gae_application
-        description: A Google App Engine application whose zone to remain in. Must be in the same region as this instance.
-        varType: string
       - name: iam_users
         description: A list of IAM users to be created in your CloudSQL instance
         varType: |-
@@ -234,25 +185,10 @@ spec:
           spec:
             outputExpr: network_id
             inputPath: private_network
-      - name: maintenance_window_day
-        description: The day of week (1-7) for the Cloud SQL instance maintenance.
-        varType: number
-        defaultValue: 1
-      - name: maintenance_window_hour
-        description: The hour of day (0-23) maintenance window for the Cloud SQL instance maintenance.
-        varType: number
-        defaultValue: 23
       - name: maintenance_window_update_track
         description: The update track of maintenance window for the Cloud SQL instance maintenance.Can be either `canary` or `stable`.
         varType: string
         defaultValue: canary
-      - name: master_instance_name
-        description: Name of the master instance if this is a failover replica. Required for creating failover replica instance. Not needed for master instance. When removed, next terraform apply will promote this failover failover replica instance as master instance
-        varType: string
-      - name: module_depends_on
-        description: List of modules or resources this module depends on.
-        varType: list(any)
-        defaultValue: []
       - name: name
         description: The name of the Cloud SQL instance
         varType: string
@@ -271,14 +207,6 @@ spec:
         description: The pricing plan for the Cloud SQL instance.
         varType: string
         defaultValue: PER_USE
-      - name: project_id
-        description: The project ID to manage the Cloud SQL resources
-        varType: string
-        required: true
-      - name: random_instance_name
-        description: Sets random suffix at the end of the Cloud SQL resource name
-        varType: bool
-        defaultValue: false
       - name: read_replica_deletion_protection
         description: Used to block Terraform from deleting replica SQL Instances.
         varType: bool
@@ -340,41 +268,11 @@ spec:
       - name: secondary_zone
         description: "The preferred zone for the replica instance, it should be something like: `us-central1-a`, `us-east1-c`."
         varType: string
-      - name: tier
-        description: The tier for the Cloud SQL instance.
-        varType: string
-        defaultValue: db-f1-micro
-      - name: update_timeout
-        description: The optional timout that is applied to limit long database updates.
-        varType: string
-        defaultValue: 30m
-      - name: user_deletion_policy
-        description: "The deletion policy for the user. Setting ABANDON allows the resource to be abandoned rather than deleted. This is useful for Postgres, where users cannot be deleted from the API if they have been granted SQL roles. Possible values are: \"ABANDON\"."
-        varType: string
-      - name: user_labels
-        description: The key/value labels for the Cloud SQL instances.
-        varType: map(string)
-        defaultValue: {}
-      - name: user_name
-        description: The name of the default user
-        varType: string
-        defaultValue: default
-      - name: user_password
-        description: The password for the default user. If not set, a random one will be generated and available in the generated_user_password output variable.
-        varType: string
-        defaultValue: ""
-      - name: zone
-        description: "The zone for the Cloud SQL instance, it should be something like: `us-central1-a`, `us-east1-c`."
-        varType: string
     outputs:
       - name: additional_users
         description: List of maps of additional users and passwords
       - name: dns_name
         description: DNS name of the instance endpoint
-      - name: env_vars
-        description: Exported environment variables
-      - name: generated_user_password
-        description: The auto generated default user password if not input password was provided
   requirements:
     roles:
       - level: Project
