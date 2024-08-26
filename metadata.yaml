@@ -207,18 +207,6 @@ spec:
         description: The pricing plan for the Cloud SQL instance.
         varType: string
         defaultValue: PER_USE
-      - name: read_replica_deletion_protection
-        description: Used to block Terraform from deleting replica SQL Instances.
-        varType: bool
-        defaultValue: false
-      - name: read_replica_deletion_protection_enabled
-        description: Enables protection of replica instance from accidental deletion across all surfaces (API, gcloud, Cloud Console and Terraform).
-        varType: bool
-        defaultValue: false
-      - name: read_replica_name_suffix
-        description: The optional suffix to add to the read instance name
-        varType: string
-        defaultValue: ""
       - name: read_replicas
         description: List of read replicas to create. Encryption key is required for replica in different region. For replica in same region as master set encryption_key_name = null
         varType: |-
